@@ -1,24 +1,24 @@
-// server.js
-
 const express = require('express');
 const cors = require('cors');
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Home Route
 app.get('/', (req, res) => {
-  res.send('Task Manager Backend Running Successfully');
+  res.send('Backend Working Successfully');
 });
 
-// Task Routes
-const taskRoutes = require('./routes/tasks');
-app.use('/api/tasks', taskRoutes);
+app.get('/api/tasks', (req, res) => {
+  res.json([
+    {
+      id: 1,
+      title: 'Sample Task'
+    }
+  ]);
+});
 
-// Railway Port
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
