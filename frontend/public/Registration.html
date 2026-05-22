@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register - Task Manager</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 25px;
+      width: 320px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Register</h2>
+
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+  <button onclick="registerUser()">Register</button>
+</div>
+
+<script>
+function registerUser() {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (!name || !email || !password) {
+    alert("All fields are required!");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  // Store user locally (for demo projects)
+  let user = {
+    name: name,
+    email: email,
+    password: password
+  };
+
+  localStorage.setItem("taskUser", JSON.stringify(user));
+
+  alert("Registration successful!");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
