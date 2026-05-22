@@ -1,31 +1,32 @@
+// routes/tasks.js
+
 const express = require('express');
 const router = express.Router();
 
-let tasks = [];
-
 // GET all tasks
 router.get('/', (req, res) => {
-  res.json(tasks);
+  res.json([
+    {
+      id: 1,
+      title: 'Complete Project',
+      status: 'Pending'
+    },
+    {
+      id: 2,
+      title: 'Deploy on Railway',
+      status: 'Done'
+    }
+  ]);
 });
 
-// ADD task
+// POST task
 router.post('/', (req, res) => {
-  const newTask = {
-    id: Date.now(),
-    title: req.body.title,
-    completed: false
-  };
+  const newTask = req.body;
 
-  tasks.push(newTask);
-
-  res.json(newTask);
-});
-
-// DELETE task
-router.delete('/:id', (req, res) => {
-  tasks = tasks.filter(task => task.id != req.params.id);
-
-  res.json({ message: 'Task deleted' });
+  res.json({
+    message: 'Task Added Successfully',
+    task: newTask
+  });
 });
 
 module.exports = router;
